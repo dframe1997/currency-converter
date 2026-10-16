@@ -1,7 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import styles from "./styles.module.css";
-
-const API_KEY = import.meta.env.VITE_API_KEY;
+import { useCurrencies } from "../../api/useCurrencies";
+import { ErrorToast } from "../ErrorToast/ErrorToast";
 
 export const CurrencySelect = ({
   id,
@@ -14,19 +13,9 @@ export const CurrencySelect = ({
   value: string;
   onChange: (newCurrency: string) => void;
 }) => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["currencies"],
-    queryFn: () =>
-      fetch("api/currencies", {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }).then((res) => res.json()),
-  });
+  const { isPending, error, data } = useCurrencies();
 
-  if (isPending) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-
-  const currencies = data.response;
+  if (!error) return <ErrorToast message={"Test"} />;
 
   return (
     <>
@@ -37,12 +26,19 @@ export const CurrencySelect = ({
         id={`${id}-ccy`}
         onChange={(e) => onChange(e.target.value)}
         value={value}
+        disabled={isPending}
       >
-        {currencies.map((ccy: { currency: string; id: string }) => (
-          <option id={ccy.id} className="ccy-option">
-            {ccy.short_code} - {ccy.name}
-          </option>
-        ))}
+        {isPending ? (
+          <option>Loading currencies...</option>
+        ) : (
+          data.response.map(
+            (ccy: { short_code: string; id: string; name: string }) => (
+              <option id={ccy.id} className="ccy-option" value={ccy.short_code}>
+                {ccy.short_code} - {ccy.name}
+              </option>
+            ),
+          )
+        )}
       </select>
     </>
   );
