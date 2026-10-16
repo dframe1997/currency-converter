@@ -1,6 +1,5 @@
 import styles from "./styles.module.css";
 import { useCurrencies } from "../../api/useCurrencies";
-import { ErrorToast } from "../ErrorToast/ErrorToast";
 
 export const CurrencySelect = ({
   id,
@@ -13,9 +12,7 @@ export const CurrencySelect = ({
   value: string;
   onChange: (newCurrency: string) => void;
 }) => {
-  const { isPending, error, data } = useCurrencies();
-
-  if (!error) return <ErrorToast message={"Test"} />;
+  const { isPending, isError, data } = useCurrencies();
 
   return (
     <>
@@ -26,18 +23,19 @@ export const CurrencySelect = ({
         id={`${id}-ccy`}
         onChange={(e) => onChange(e.target.value)}
         value={value}
-        disabled={isPending}
+        disabled={isPending || isError}
       >
         {isPending ? (
           <option>Loading currencies...</option>
+        ) : isError ? (
+          <option>Error loading currencies</option>
         ) : (
-          data.response.map(
-            (ccy: { short_code: string; id: string; name: string }) => (
-              <option id={ccy.id} className="ccy-option" value={ccy.short_code}>
-                {ccy.short_code} - {ccy.name}
-              </option>
-            ),
-          )
+          data &&
+          data.response.map((ccy) => (
+            <option id={ccy.id} className="ccy-option" value={ccy.short_code}>
+              {ccy.short_code} - {ccy.name}
+            </option>
+          ))
         )}
       </select>
     </>

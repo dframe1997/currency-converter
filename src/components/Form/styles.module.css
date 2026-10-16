@@ -1,0 +1,65 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  gap: 1.25rem;
+  box-sizing: border-box;
+  padding: 2.5rem 5rem;
+  background: rgb(243, 246, 248);
+}
+
+.card h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.card label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0.35rem;
+  width: 100%;
+}
+
+.card input,
+.card select {
+  width: 100%;
+  min-width: 150px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: black;
+  background-color: white;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.card input:focus,
+.card select:focus {
+  outline: none;
+  border-color: cornflowerblue;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.card select:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+  color: #94a3b8;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
