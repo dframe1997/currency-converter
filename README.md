@@ -30,7 +30,7 @@ I like using CSS Modules for simple separation of styles per component/page/etc.
 
 I made custom hooks for each API endpoint to separate the API integration from the components. Even though each hook is only used in one place currently, this helps to make the code cleaner by separating concerns.
 
-## Immediate currency conversion
+### Immediate currency conversion
 
 The app immediately converts the currency as the user types without needing to click a submit button. This is a good UX for a lightweight converter, but in a production version I would likely debounce the API call to reduce unnecessary requests while keeping the interaction responsive.
 
@@ -53,7 +53,9 @@ If more time was available, I would improve the styles to be more animated and v
 
 ### Unit and E2E testing
 
-I would add unit tests and e2e tests where appropriate. Although most of the business logic is on the API, some unit tests to check the form behaves as intended would be appropriate. In addition, if the app was scaled up, had additional features or more complex micro-interactions, unit tests would become increasingly necessary. I would cover isolated util functions for business logic, as well as testing some component rendering and behaviour using React Testing Library. I would also add playwright tests to check the full e2e experience with a mocked API for consistency. I would also integrate these into a CI/CD pipeline alongside linting and other automated scripts.
+I would add unit tests and e2e tests where appropriate. Although most of the business logic is on the API, some unit tests to check the form behaves as intended would be appropriate. In addition, if the app was scaled up, had additional features or more complex micro-interactions, unit tests would become increasingly necessary. I would cover isolated util functions for business logic, as well as testing some component rendering and behaviour using React Testing Library.
+
+I would also add playwright tests to check the full e2e experience with a mocked API for consistency. I would also integrate these into a CI/CD pipeline alongside linting and other automated scripts.
 
 ### Converting API props to camelCase
 
