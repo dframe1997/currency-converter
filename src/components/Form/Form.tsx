@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CurrencySelect } from "../CurrencySelect/CurrencySelect";
 import { ConvertedCurrency } from "../ConvertedCurrency/ConvertedCurrency";
+import { SwapCurrencies } from "../SwapCurrencies/SwapCurrencies";
 import styles from "./styles.module.css";
 
 export const Form = () => {
@@ -10,6 +11,13 @@ export const Form = () => {
 
   const handleAmount = (amount: string) => {
     setAmount(amount);
+  };
+
+  const swapCurrencies = () => {
+    const from = fromCurrency;
+    const to = toCurrency;
+    setFromCurrency(to);
+    setToCurrency(from);
   };
 
   const parsedNumber = Number(amount);
@@ -32,7 +40,8 @@ export const Form = () => {
           label="To"
           onChange={setToCurrency}
         />
-        <label htmlFor="amount">Amount:</label>
+        <SwapCurrencies swapFn={swapCurrencies} />
+        <label htmlFor="amount">Amount</label>
         <input
           id="amount"
           type="number"

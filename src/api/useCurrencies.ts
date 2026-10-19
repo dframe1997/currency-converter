@@ -12,5 +12,6 @@ export const useCurrencies = () => {
   return useQuery({
     queryKey: ["currencies"],
     queryFn: fetchCurrencies,
+    staleTime: 1000 * 60 * 60,
   });
 };

@@ -1,0 +1,13 @@
+.swap {
+  cursor: pointer;
+  background: #754cb1;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: 1px solid #2a3140;
+}
+
+.buttonContainer {
+  display: grid;
+  place-items: center;
+}

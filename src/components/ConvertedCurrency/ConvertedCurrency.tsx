@@ -23,5 +23,12 @@ export const ConvertedCurrency = ({ from, to, amount }: ConversionRequest) => {
       (currencies ? getSymbol(currencies.response, data.response.to) : "") +
       Number(data.response.value).toFixed(2);
 
-  return <p className={styles.result}>{content}</p>;
+  return (
+    <div className={styles.outputContainer}>
+      <label for="output">Result</label>
+      <output className={styles.result} aria-live="polite">
+        {content}
+      </output>
+    </div>
+  );
 };

@@ -1,4 +1,3 @@
-import styles from "./styles.module.css";
 import { useCurrencies } from "../../api/useCurrencies";
 
 export const CurrencySelect = ({
@@ -16,9 +15,7 @@ export const CurrencySelect = ({
 
   return (
     <>
-      <label htmlFor={`${id}-ccy`} className={styles.label}>
-        {label}
-      </label>
+      <label htmlFor={`${id}-ccy`}>{label}</label>
       <select
         id={`${id}-ccy`}
         onChange={(e) => onChange(e.target.value)}
